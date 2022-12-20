@@ -1,3 +1,26 @@
+<?php 
+
+$pengecekan=$_GET["angka"];
+
+
+
+if($pengecekan < 31) {
+    $hasil = "kurang";
+} elseif ($pengecekan < 51) {
+    $hasil = "Lumayan";
+} elseif ($pengecekan < 76) {
+    $hasil = "ya boleh lah";
+}elseif ($pengecekan < 101) {
+    $hasil = "mantap";
+}else {
+    $hasil = "diluar nalar coy";
+}
+
+
+
+?>
+
+
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -15,28 +38,9 @@
         </form>
         
     </div>
+    <h1><?php echo $hasil; ?></h1>
     
 
 </body>
 </html>
 
-<?php 
-
-$pengecekan=$_GET["angka"];
-
-if($pengecekan < 30) {
-    $hasil = "kurang";
-} elseif ($pengecekan < 50) {
-    $hasil = "Lumayan";
-} elseif ($pengecekan < 75) {
-    $hasil = "ya boleh lah";
-}elseif ($pengecekan < 100) {
-    $hasil = "mantap";
-}else {
-    $hasil = "diluar nalar coy";
-}
-
-
-
-?>
-<h1><?php echo $hasil; ?></h1>
