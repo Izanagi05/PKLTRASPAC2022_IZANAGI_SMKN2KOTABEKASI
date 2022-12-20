@@ -1,6 +1,5 @@
 <?php
 
-echo "hello world";
 $makanan = array("Rumput", "Ikan", "Daging");
 $hewan = array("Sapi", "Kucing", "Singa");
 
