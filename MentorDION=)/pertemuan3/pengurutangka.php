@@ -61,22 +61,15 @@
             kolom.appendChild(kolominput);
         }
         function kurang(){
-            // var kolom= document.getElementById('kolom');
+        
             var kolom= document.getElementById('kolom');
-            // var kolominput = document.getElementById('kolominput');
-            // kolominput.setAttribute("name", "inputangka");
+  
             
             kolom.removeChild(kolom.lastChild);
         }
 
         
-        
-        // function kurang(){
-        //     // var kolom= document.getElementById('kolom');
-        //     // var kolominput = document.createElement('input');
 
-        //     kolom.removeChild(kolominput);
-        // }
         
     </script>
 
@@ -93,26 +86,18 @@ if (isset($_POST['urutkan'])){
     $hasilurutan = $_POST['urutan'];
     
     if ($hasilurutan === "kecil-besar" ){
-        // print_r ($hi);
         sort($hasilinput);
-        // sort($hi);
-        
+
         }else{
             rsort($hasilinput);
         }
-    // foreach( $hasilinput as $key => $n ){
+
         foreach ($hasilinput as $hi){
 
             print_r ($hi);
            
         }
     
-    // if ($hasilurutan === "kecil-besar"){
-    //     echo sort($hasilinput);
-    
-    // }else{
-    //     echo rsort($hasilinput);
-    // }
-}
+      }
 
 ?>
