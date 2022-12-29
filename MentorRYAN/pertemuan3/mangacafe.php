@@ -64,7 +64,6 @@ if($waktu < '14:00'){
         <h3>Nama: <?php echo $nama?> </h3>
         <h3>Usia:<?php echo $Usia . " Tahun"?> </h3>
         <h3>Jam Datang: <?php  echo $waktu?> </h3>
-        <!-- <h3>Dengan: <?php  echo $keadaan?> </h3> -->
         <h3>Status: <?php echo $status?> </h3>
         <h3>Ruang: <?php echo $ruang ??''?> </h3>
     </div>
