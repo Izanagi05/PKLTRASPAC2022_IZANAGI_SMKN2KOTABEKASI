@@ -1,0 +1,79 @@
+@import url('https://fonts.googleapis.com/css2?family=IBM+Plex+Serif&display=swap');
+
+*{
+    font-family: 'IBM Plex Serif', regular;
+    padding: 0;
+    margin: 0;
+}
+body {
+    background-color: #acb0b4;
+}
+
+.container{
+    overflow-x: hidden;
+    margin: auto;
+    width: 210mm;
+    height: auto;
+    overflow: hidden;
+    box-shadow: 0px 0px 10px rgba(0, 0, 0, 0.7);
+    
+}
+
+.rowheader{
+    display: grid;
+    grid-template-columns:  18vw auto;
+    grid-template-rows: 170px;
+
+    
+}
+.img img{
+    width: 100%;
+    object-fit: cover;
+    background-size: cover;
+    height: 170px;
+}
+.teksheader{
+    position: relative;
+    background-color: #0d2840;
+    font-weight: 700;
+    font-style: normal;
+    color: rgb(255, 255, 255);
+}
+.teks{
+    margin-top:40px;
+    margin-left: 40px;
+}
+.baris{
+    display: grid;
+    grid-template-columns: 18vw auto;
+    grid-template-rows: auto;
+}
+.kolom1{
+
+    width: 18vw;
+    background-color: #d6e8f4;
+    padding-bottom:200px;
+    font-size: 90%;
+}
+
+.row1{
+    margin-left: 10px;
+    padding: 10px;  
+    margin-top: 50px;
+}
+
+/* .tekskolom1{
+    margin: 30px;
+} */
+.kolom2{
+    background-color: white;
+}
+.row2{
+    padding: 10px;
+    margin-top: 50px;
+    margin-left: 100px;
+
+}
+p{
+    margin: 10px;
+}
