@@ -1,6 +1,5 @@
 <template>
-  <div>
-
+  <div style="background-color:#D9D9D9;">
     <div  class="konten">
       <div class="dadjokes" >
         <h2> Dad Jokes</h2>
@@ -13,8 +12,6 @@
             <v-card class="search">
             <v-text-field class="input-search" prepend-icon="mdi-magnify" placeholder="frog"    v-model="search"></v-text-field>
             </v-card>
-
-
       </div>
 
 
@@ -54,6 +51,10 @@ line-height: 24px;
 font-size: 16px;
 
 }
+html{
+  background-color:#D9D9D9 ;
+}
+
 /* .input-search::placeholder{
  font-weight: 500;
 } */

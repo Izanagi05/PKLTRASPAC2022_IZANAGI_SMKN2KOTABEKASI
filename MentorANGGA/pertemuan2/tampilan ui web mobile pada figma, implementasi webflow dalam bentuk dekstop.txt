@@ -1,0 +1,6 @@
+
+okay kita masuk ke tugas pertama. di tugas pertama, aku ingin kalian buat design ui web portofolio kalian dalam versi mobile. untuk deadline nya maksimal sampai istirahat ya. namun jika lebih cepat lebih baik. jadi lebih cepat untuk masuk ke tugas utama.
+
+
+
+sippppppp, coba lanjut ke webflow dulu yaa, coba kenalan dan coba implementasikan web portofolio mu, sementara buat tampilan desktop dulu, untuk implementasi mobile buat pertemuan berikut nya aja
