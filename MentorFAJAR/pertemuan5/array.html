@@ -1,0 +1,72 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    <div>
+        <h1>Soal no 1</h1>
+        <p>menggabungkan 2 array menjadi 1 array</p>
+        <h2 id="no1"></h2>
+    </div>
+    <br>
+    <hr>
+    <div>
+        <h1>Soal no 2</h1>
+        <p>memisah string dengan pemisah spasi dan simpan hasilnya dalam bentuk array</p>
+        <h2 id="no2"></h2>
+    </div>
+    <br>
+    <hr>
+    <div>
+        <h1>Soal no 3</h1>
+        <p>menampilkan 5 karakter terakhir dari string</p>
+        <h2 id="no3"></h2>
+    </div>
+    <br>
+    <hr>
+    <div>
+        <h1>Soal no 4</h1>
+        <p>mengubah string ke huruf Kapital dan di reverse</p>
+        <h2 id="no4"></h2>
+    </div>
+</body>
+
+<script>
+// no 1
+    let textarray1 = ['Pisang', 'Apel', 'Nanas'];
+    let textarray2 = ['Mangga', 'Anggur', 'Leci'];
+    let gabungkan= textarray1.concat(textarray2);
+    console.log(gabungkan);
+    document.getElementById("no1").innerHTML = gabungkan;
+
+//no 2
+    let teks2 = 'Are you okey?';
+    let pisah =teks2.split(' ');
+    document.getElementById("no2").innerHTML = pisah;
+    console.log(pisah);
+
+    
+//no 3
+    let teks3 = 'Hello My Name Is Iza'; 
+    let tampil= teks3.substring(17);
+    // let tampil= teks3.slice(17, 22);
+    console.log(tampil);
+    document.getElementById("no3").innerHTML = tampil;
+    
+    
+    
+//no 4
+    let teks4 = 'hello my name is bjorwi';
+    let kapital = teks4.toUpperCase();
+    let split = kapital.split(" ");
+    let ubah = split.reverse().join("_");
+    let ubah2 = ubah.split("").reverse().join("")
+    console.log(ubah2);
+    document.getElementById("no4").innerHTML = ubah2;
+
+</script>
+</html>

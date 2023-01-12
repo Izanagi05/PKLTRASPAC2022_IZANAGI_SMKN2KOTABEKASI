@@ -6,9 +6,6 @@
       </div>
 
       <div  class="kartu-search">
-            <!-- <v-btn icon class="ikon-search">
-              <v-icon >mdi-magnify</v-icon>
-            </v-btn> -->
             <v-card class="search">
             <v-text-field class="input-search" prepend-icon="mdi-magnify" placeholder="frog"    v-model="search"></v-text-field>
             </v-card>
