@@ -102,30 +102,78 @@ if (isset($_POST['urutkan'])){
     {
         global $hasilinput; 
         $count = [];
-      for($i = 0; $i <= 9; $i++)
+        $n = max($hasilinput);
+        $k = min($hasilinput);
+      for($i =$k ; $i <=$n; $i++)
       {
-        $count[$i] = 0;
+          
+          $count[$i] = 0;
+         
+          
       }
      
       foreach($hasilinput as $number)
       {
-        $count[$number]++; 
+          //$count[$hasilinput[i]]
+          $count[$number]++; 
+          
       }
       $z = 0;
-      for($i = 0; $i <= 9; $i++) {
+      for($i = $k; $i <=$n; $i++) {
         while( $count[$i]-- > 0 ) {
-          $hasilinput[$z++] = $i;
-        }
-      }
-      return $hasilinput;
+    
+    
+    $hasilinput[$z++] = $i;
+    
+}
+}
+
+return $hasilinput;
+
     }
+    
+    function counting_rsort($hasilinput)
+    {
+        global $hasilinput; 
+        $count = [];
+        $n = max($hasilinput);
+        $k = min($hasilinput);
+      for($i =$k ; $i <=$n; $i++)
+      {
+          
+          $count[$i] = 0;
+          
+      }
+     
+      foreach($hasilinput as $number)
+      {
+          
+          $count[$number]++; 
+        
+      }
+      $z = 0;
+      for($i = $n; $i >=$k; $i--) {
+        while( $count[$i]-- > 0 ) {
+    
+    
+    $hasilinput[$z++] = $i;
+    
+}
+}
+
+return $hasilinput;
+
+    }
+
+
 
     if ($hasilurutan === "kecil-besar" ){
         // sort($hasilinput);
         counting_sort($hasilinput);
-
-        }else{
-            rsort($hasilinput);
+        
+    }else{
+            counting_rsort($hasilinput);
+            // rsort($hasilinput);
         }
 
         foreach ($hasilinput as $hi){
@@ -133,7 +181,7 @@ if (isset($_POST['urutkan'])){
             print_r ($hi);
            
         }
-    print_r($hasilinput);
+    // print_r($hasilinput);
       }
 
 
