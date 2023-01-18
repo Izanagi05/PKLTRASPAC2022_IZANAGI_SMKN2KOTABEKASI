@@ -5,7 +5,7 @@
     <h1>
       Angka: {{ this.$store.state.tesvuex.awal}}
     </h1>
-    <button @click="kliktambah()" class="tombol">klik</button>
+    <button @click="kliktambah()" class="tombol">Tambah</button>
     <button @click="klikkurang()" class="tombol">Kurang</button>
   </div>
 </template>
