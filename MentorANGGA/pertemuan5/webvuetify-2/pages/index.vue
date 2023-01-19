@@ -16,22 +16,24 @@
 
       <div v-if="search === null || search === '' ">
 
-        <div class="result">
-          <h4>Result: {{ datanya.results.length }}</h4>
+        <div class="notavailable">
+          <p class=""> Data not available</p>
         </div>
 
-        <div>
-          <v-card v-for="ir in datanya.results" :key="ir.id"     class="kartu-data">
-            <v-card-text class="text-data"><p>{{ ir.joke }}</p></v-card-text>
-          </v-card>
-        </div>
+
 
       </div>
 
       <div v-else >
 
-        <div class="notavailable">
-          <p class=""> Data not available</p>
+        <div class="result">
+          <h4>Result: {{ filtering.length }}</h4>
+        </div>
+
+        <div>
+          <v-card v-for="ir in filtering" :key="ir.id"     class="kartu-data">
+            <v-card-text class="text-data"><p>{{ ir.joke }}</p></v-card-text>
+          </v-card>
         </div>
 
       </div>
@@ -95,9 +97,25 @@ export default {
   name: 'IndexPage',
   data(){
     return{
-      datanya:{},
+      datanya:[],
+      jabawan: 'jawaban',
       search: null,
 
+    }
+  },
+  watch : {
+    search(newvalue, oldvalue){
+      // if(value.incluede('?')){
+      // }
+      this.ambildata()
+      console.log('old='+ oldvalue, 'new:'+ newvalue)
+    }
+  },
+  computed: {
+    filtering(){
+      return this.datanya.filter((ir) => {
+        return ir.joke.match(this.search)
+      })
     }
   },
   methods: {
@@ -107,9 +125,19 @@ export default {
         Accept: " application/json",
       }
     }).then(respon => {
-        this.datanya = respon.data
+        this.datanya = respon.data.results
       })
-        }
+        },
+    //  async hasil(){
+    //   this.jawaban = 'Thinking...'
+    //     try {
+    //     const res = await fetch('https://icanhazdadjoke.com/search')
+    //     this.jawaban = (await res.json()).jawaban
+    //   } catch (error) {
+    //     this.answer = 'Error! Could not reach the API. ' + error
+    //   }
+    //   }
+
 
   },
   created(){
