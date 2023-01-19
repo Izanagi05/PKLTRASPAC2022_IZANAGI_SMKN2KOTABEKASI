@@ -97,17 +97,11 @@ export default {
     return{
       datanya:{},
       search: null,
-      ItemResult: [
-        'Did you her the one about the guy with the broken hearing aid? Neither did he.',
-        'Did you her the one about the guy with the broken hearing aid? Neither did he.',
-        'Did you her the one about the guy with the broken hearing aid? Neither did he.',
-        'Did you her the one about the guy with the broken hearing aid? Neither did he.'
-      ]
+
     }
   },
   methods: {
     ambildata(){
-        // axios.get('https://icanhazdadjoke.com/search').then(({data})=>(this.datanya = data));
         axios.get("https://icanhazdadjoke.com/search", {
       headers: {
         Accept: " application/json",
