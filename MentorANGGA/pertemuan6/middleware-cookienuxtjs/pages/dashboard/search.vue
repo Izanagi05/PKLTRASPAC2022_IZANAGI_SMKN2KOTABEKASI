@@ -94,12 +94,14 @@ html{
 <script>
 import axios from 'axios';
 export default {
+  middleware: 'middlewareku',
   name: 'IndexPage',
   data(){
     return{
       datanya:[],
       jabawan: 'jawaban',
       search: null,
+      tess:'sss'
 
     }
   },
@@ -125,21 +127,12 @@ export default {
         Accept: " application/json",
       }
     }).then(respon => {
-        this.datanya = respon.data.results
-      //   .filter((ir) => {
-      //   return ir.joke.match(this.search)
-      // })
+        this.datanya = respon.data.results.filter((ir) => {
+        return ir.joke.match(this.search)
+      })
       })
         },
-    //  async hasil(){
-    //   this.jawaban = 'Thinking...'
-    //     try {
-    //     const res = await fetch('https://icanhazdadjoke.com/search')
-    //     this.jawaban = (await res.json()).jawaban
-    //   } catch (error) {
-    //     this.answer = 'Error! Could not reach the API. ' + error
-    //   }
-    //   }
+
 
 
   },

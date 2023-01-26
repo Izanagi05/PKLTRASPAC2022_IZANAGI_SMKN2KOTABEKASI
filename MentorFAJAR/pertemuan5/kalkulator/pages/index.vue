@@ -20,10 +20,17 @@
         <input type="number" v-model="bil2" placeholder="bilangan2">
       </div>
       <div class="row tombol">
-        <input @click="klik()" class="btn" type="submit" value="submit">
+        <input @click="klik()" class="btnn btn" type="submit" value="Submit">
+        <input @click="reset()" class=" btn btn-danger ml-4" type="submit" value="Reset">
+      </div>
+      <div class="row tombol">
       </div>
       <div v-if="set === true ">
-        <h4>Hasil : {{ hasil }}</h4>
+        <h4>Opsi Aritmatika: {{ oopsi }}</h4>
+        <h4>Input 1: {{ bil1 }} </h4>
+        <h4>Input 2: {{ bil2 }} </h4>
+        <h4>Output: {{ output }} </h4>
+        <!-- <h4>Hasil : {{ hasil }}</h4> -->
       </div>
       <div v-else>
 
@@ -58,9 +65,16 @@ input{
 .row{
   margin-bottom: 20px;
 }
+.tombol input{
+  color:black;
+}
 
-.btn{
+.btnn{
   background: rgb(0, 255, 174);
+}
+.btnn:hover{
+  background: rgb(0, 196, 134);
+  color:white;
 }
 </style>
 
@@ -75,16 +89,26 @@ export default {
       bil2: null,
       pilihan: null,
       hasil: null,
+      oopsi:null
 
     }
   },
   methods:{
+    reset(){
+      if(this.bil1 === null || this.bil2 === null || this.bil1 === '' || this.bil2 === '' || (this.pilihan === null || this.pilihan === '' )){
+        alert("Gagal Reset")
+      }else{
+        alert("Berhasil Reset")
+        this.bil1 = null,
+        this.bil2 = null,
+        this.hasil = null,
+        this.oopsi = null,
+        this.pilihan = null,
+        this.set = false
+      }
+    },
 
     klik(){
-
-
-
-
 
       if(this.bil1 === null || this.bil2 === null || this.bil1 === '' || this.bil2 === '' || (this.pilihan === null || this.pilihan === '' )){
         alert ("Isi input bilangan dengan benar");
@@ -95,24 +119,35 @@ export default {
           alert("Pilih opsi aritmatika dahulu");
       }
       else if(this.pilihan === 'tambah' ){
+        this.oopsi ="+";
         this.hasil = parseInt(this.bil1) + parseInt(this.bil2)
       }
       else if(this.pilihan === 'kurang' ){
+        this.oopsi ="-";
         this.hasil = parseInt(this.bil1) - parseInt(this.bil2)
       }
       else if(this.pilihan === 'kali'){
+        this.oopsi ="x";
         this.hasil = parseInt(this.bil1) * parseInt(this.bil2)
       }
       else if(this.pilihan === 'bagi' ){
+        this.oopsi =":";
         this.hasil = parseInt(this.bil1) / parseInt(this.bil2)
       }
       else if(this.pilihan === 'module' ){
+        this.oopsi ="%";
         this.hasil = parseInt(this.bil1) % parseInt(this.bil2)
       }
       }
 
     }
 
-  }
+  },
+  computed:{
+    output(){
+      return this.bil1 +' '+ this.oopsi +' '+ this.bil2 +' = '+ this.hasil
+
+    }
+  },
 }
 </script>

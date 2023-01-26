@@ -43,7 +43,7 @@
 </div>
           
     
-    <form action="tambahfilterpengurutangka.php" method="post">
+    <form action="insertinnerjs.php" method="post">
 
             <table>
                 
@@ -66,10 +66,10 @@
                 <tr id ="lll">
                     <td id="tbhkrgfilter" >
 
-                <div>
+                <div >
                         <input type="checkbox" name="cekkotak[]" id="cekkotakk" value="dicek">
                         <label for="cekkotakk" id="idlabel">Filter tampil hanya yang</label>
-                        <select name="pilihfilter" id="selectid" >
+                        <select name="pilihfilter[]" id="selectid" >
                             <option  value="lebihbesardari">></option>
                             <option   value="lebihkecildari"><</option>
                         </select>
@@ -135,63 +135,25 @@
         krgfilter.addEventListener("click", kurangfilter);
 
         function tambahfilter(){
-            var barisfilter= document.getElementById('tbhkrgfilter');
-
-            //cekbok
-            var cekboxfilter = document.createElement('input');
-            cekboxfilter.setAttribute("name", "cekkotak[]");
-            cekboxfilter.setAttribute("type", "checkbox");
-            
-            //label
-            var labelfilter = document.createElement('label');
-            var textlabelfilter = document.createTextNode("Filter tampil hanya yang ");
-            labelfilter.setAttribute("for", "cekkotakk");
-            labelfilter.appendChild(textlabelfilter);
-
-            //optionfilter
-            var filter = document.createElement('select');
-            filter.setAttribute("name", "pilihfilter[]");
-            filter.setAttribute("id", "selectid[]");
-            
-            var option1 = document.createElement('option');
-            option1.setAttribute("value", "lebihbesardari");
-            option1.setAttribute("id", "value1");
-            var textoption1 = document.createTextNode(">")
-            option1.appendChild(textoption1);
-            
-
-            var option2 = document.createElement('option');
-            option2.setAttribute("value", "lebihkecildari");
-            option2.setAttribute("id", "value2");
-            var textoption2 = document.createTextNode("<")
-            option2.appendChild(textoption2);
-            
-            filter.appendChild(option1);
-            filter.appendChild(option2);
-
-            //inputfilter
-            var inputfilter = document.createElement('input');
-            kolominput.setAttribute("type", "number");
-            inputfilter.setAttribute("name", "angkafilter[]");
-
-
-            barisfilter.appendChild(cekboxfilter);//tambahinputcekbok
-            barisfilter.appendChild(labelfilter);//tambahlabelcekbok
-            barisfilter.appendChild(filter);//tambahselectoption
-            barisfilter.appendChild(inputfilter);//tambahinputfilter
-
+        var barisfilter= document.querySelector('#tbhkrgfilter');//id td nya
+        var divfilter = `<div>
+                        <input type="checkbox" name="cekkotak[]" id="cekkotakk" value="dicek">
+                        <label for="cekkotakk" id="idlabel">Filter tampil hanya yang</label>
+                        <select name="pilihfilter[]" id="selectid" >
+                            <option  value="lebihbesardari">></option>
+                            <option   value="lebihkecildari"><</option>
+                        </select>
+                        <input type="number" name="angkafilter[]">
+                    </div>`;
+        barisfilter.insertAdjacentHTML("beforeend", divfilter);
         }
 
+    
         function kurangfilter(parent){
             // var $filter= document.getElementById('selectid[]');
             var barisfilter= document.querySelector('#tbhkrgfilter');
             barisfilter.removeChild(barisfilter.lastChild);
-            // var cekboxfilter= document.querySelector('#cekkotakk');
-
-            // barisfilter.removeChild(cekboxfilter.lastChild);
-            // while (barisfilter.lastChild) {
-            //     barisfilter.removeChild(barisfilter.lastChild);
-            // }
+   
             
         }
 
@@ -225,72 +187,58 @@ if (isset($_POST['urutkan'])){
     $cekgabung = $_POST['cekgabung']??"";
     $pemisah = $_POST['pemisah']??"";
 
-
-
-    if ($cekkotak){
-        echo "ini if benar ";
-        foreach ($angkafilter as $akf){
-
-            echo $akf;
-        }
-
-            if ($pilihfilter === "lebihbesardari" ){
-                echo "pilih lebih besar";
-            }else{
-                echo"pilih lebih kecil";
-            }
-        }else{
-            echo " kosong";
-        }
     
-    echo"<br>";
-
-
-
     if ($hasilurutan === "kecil-besar" ){
         sort($hasilinput);
-        
     }else{
             rsort($hasilinput);
         }
 
-    if($cekgabung){
-     
-        
-        foreach ($hasilinput as $hi){
+    if ($cekkotak){
+        for($i=0; $i < count($cekkotak); $i++){
+            $pilihfilter1 = $pilihfilter[$i] ;
+            $angkafilter1 = $angkafilter[$i];
 
-            // $gabung =$hi. $awalidengan. $pemisah;
-            $gabung = implode($pemisah, $hasilinput);
-            echo $gabung;
+            $fungsinya =  function ($kkk){
+                global $pilihfilter1, $angkafilter1;
+                
+                if($pilihfilter1 === 'lebihbesardari'){
+                    return $kkk > $angkafilter1;
+                }elseif($pilihfilter1 === 'lebihkecildari'){
+                    return $kkk < $angkafilter1;
+                }
+            };
+            $arayfilter = array_filter($hasilinput, $fungsinya);
+
         }
-    }else{
-        echo"ga cekgabung";
     }
+
+    if ($cekawali) {
+    $awali= function($l)  {
+        global $awalidengan;
+        if (($awalidengan) ==0) {
+            return $strArray;
+        }
+        return $awalidengan.$l;
+    };
+    $map = array_map($awali, $arayfilter);
+
     
-    echo"<br>";
+}
 
-    if($cekawali){
-        
-        
-        // foreach ($hasilinput as $hi){
+if($cekgabung){
 
-        //         //     $hasil = $awalidengan . $hi;
-        //         //    echo $hasil;
-        //         }
+    $gabungkan = implode($pemisah, $map);
         
-    }else{
-        echo"ga cek";
-    }
-    echo"<br>";
+}
 
-   
+
 
 
    
     
     
       }
-
-
-
+// print_r ($gabungkan ?? '');     
+echo $gabungkan ?? '';
 ?>  
