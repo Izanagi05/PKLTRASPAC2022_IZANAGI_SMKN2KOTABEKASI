@@ -18,7 +18,7 @@
               <v-text-field v-model="password" label="password"  ></v-text-field>
             </div>
             <div>
-              <v-btn class="tombol" @click="login()" color="primary">Login</v-btn>
+              <v-btn class="tombol" @click.prevent="login()" color="primary">Login</v-btn>
             </div>
           </v-card>
         </v-col>
@@ -71,7 +71,7 @@ export default{
           });
           console.log(response)
           this.$store.dispatch("userr/kkk")
-          this.$router.push('/dashboard/search')
+          this.$router.push('/dashboard/')
 
         }else{
           alert('Isi Username dan password dengan benar')

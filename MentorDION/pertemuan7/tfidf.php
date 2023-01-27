@@ -100,27 +100,32 @@ if(isset($_POST['proses'])){
 
             $semuakata = explode(" ", $strreplace);
             $arraycountval= array_count_values($semuakata);
-            print_r  ($arraycountval);
+            print_r  ($arraycountval); 
             echo"<br>";
             echo"<br>";
             for($k=0; $k<count($pisahberita); $k++){
                 
-                $jjjj = $pisahberita[$k];
                 
                 
                 // print_r ($jjjj);
                 // for($y=0; $y<count($kkk); $y++){
-                    $kkk = explode(" ", $jjjj);
-                    $countkkk= count($kkk);
                     
-                    $arctval= array_count_values($kkk) ;
+                    // print_r  ($lll);
+                $jjjj = $pisahberita[$k];
+                }
+                
+                $kkk= explode(" ", $jjjj);
+                $arctval= array_count_values($kkk) ;
+                print_r($kkk[1]);
+                $countkkk= count($kkk);
+                // for($o=0; $o<count($arctval); $o++){
                     
-                    // }
-                    $lll = count($arctval) / $countkkk;
-    
-               
-                print_r  ($lll);
-            }
+                    // print_r(count($arctval));
+                // }
+                // }
+                $lll = $countkkk/  count($arctval);
+                
+                print_r($lll);
      
             
         

@@ -6,7 +6,7 @@ export const state = () =>{
 
 export const mutations = {
   tes(state){
-    state.authenticated =true
+    state.authenticated = true
   }
 }
 export const actions = {
