@@ -14,36 +14,81 @@ export const actions ={
     try{
        await axios.get("https://dummyjson.com/products").then(result => {
 
-        commit("SET_PRODUCT", result.data.products)
+        commit("SET_PRODUK", result.data.products)
       })
     }catch (error){
       alert (error);
       console.log(error);
     }
   },
-  addproduk(tess){
-    tess.commit('tambahproduk')
+  async addproduk({commit}, dataproduk){
+    // commit('tambahproduk', dataproduk)
+    try{
+      await axios.post("https://dummyjson.com/products/add", {
+        title: dataproduk
+      }).then(result => {
+       commit("TAMBAH_PRODUK", dataproduk)
+     })
+   }catch (error){
+     alert (error);
+     console.log(error);
+   }
   },
-  deleteproduk(te){
-    te.commit('hapusproduk')
+  async deleteproduk({commit}, dataproduk){
+    try{
+      await axios.delete("https://dummyjson.com/products/1", {
+        params: dataproduk
+      }).then(result => {
+       commit("HAPUS_PRODUK", dataproduk)
+     })
+   }catch (error){
+     alert (error);
+     console.log(error);
+   }
+    // commit('hapusproduk')
+  },
+  async editproduk({commit}, dataproduk){
+    try{
+      await axios.put("https://dummyjson.com/products/1", {
+        params: dataproduk
+      }).then(result => {
+       commit("UPDATE_PRODUK", dataproduk )
+     })
+   }catch (error){
+     alert (error);
+     console.log(error);
+   }
+    // commit('hapusproduk')
   }
 
 }
 
 
 export const mutations= {
-  SET_PRODUCT(state, dataproduk) {
+  SET_PRODUK(state, dataproduk) {
     state.dataproduk = dataproduk;
   },
-  tambahproduk(state, dataproduk){
+  TAMBAH_PRODUK(state, dataproduk){
     state.dataproduk.push(dataproduk)
+    console.log("tmbh")
   },
-  editproduk(state, dataproduk){
-    state.dataproduk.push(dataproduk)
+  UPDATE_PRODUK(state, dataproduk){
+    state.dataproduk.items=dataproduk
+    // state.dataproduk.indexOf(dataproduk)
+    // let olddataproduk=state.dataproduk.indexOf(dataproduk).items
+
+    // Vue.set(state.dataproduk[state.dataproduk.indexOf(dataproduk)
+    // ])
+    // const jj= dataproduk
+  //  Object.assign(state.dataproduk, dataproduk)
+    // state.dataproduk = tes
+    // state.dataproduk.splice(state.dataproduk.indexOf(dataproduk), 1)
+
+    // state.dataproduk.push(state.dataproduk.indexOf(ed))
   },
-  hapusproduk(state){
+  HAPUS_PRODUK(state, i){
     // let index = state.dataproduk.findIndex((c) => c.id == product);
     // state.dataproduk.splice(index, 1)
-    state.dataproduk.splice(this.dataproduk, 1)
+  state.dataproduk.splice(state.dataproduk.indexOf(i), 1)
   }
 }

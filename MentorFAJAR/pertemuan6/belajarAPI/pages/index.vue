@@ -1,55 +1,130 @@
 <template>
-  <div>
+  <div id="app">
 
-   <!-- <h4>data: {{ datauser }}</h4> -->
-    <!-- <v-container >
-      <Dialog />
-      </v-container> -->
+    <v-container>
 
-    <!-- <div v-for="user in datauser" :key="user.id">
-          {{ user.name }}
-        </div> -->
-       <v-data-table data-app
-       :headers="headers"
-       :items="datauser"
+      <v-dialog v-model="dialogku"   max-width="700" persistent  transition="dialog-bottom-transition" >
+        <template v-slot:activator="{ on, attrs }" >
+
+         <v-btn
+           color="primary"
+           dark
+           class="mb-2"
+           v-bind="attrs"
+           v-on="on"
+           style="margin:10px;background-color: #1867c0; "
+
+         >Tambah data</v-btn>
+       </template>
+    <v-card class="kartu  " light style="padding:0px;color:black;border:solid 3px #1867c0;" >
+      <div style="background:#1867c0;padding:0px 30px;color:white;">
+
+        <h1>Tambah</h1>
+      </div>
+      <v-container style="padding:30px;">
+    <v-text-field style="color:black;" type="text" v-model="detaildatadialog.name"  label="Name" outline></v-text-field>
+    <v-text-field type="text" v-model="detaildatadialog.email" label="Email" outline></v-text-field>
+    <v-text-field type="text" v-model="detaildatadialog.phone"  label="Phone" outline></v-text-field>
+    <v-text-field type="text" v-model="detaildatadialog.username"  label="Username" outline></v-text-field>
+    <v-text-field type="text" v-model="detaildatadialog.website"  label="Website" outline></v-text-field>
+    <v-card-actions >
+    <v-btn @click="close()" style="margin-right:20px;background:white;color:black;" >Close</v-btn>
+      <v-btn @click="tambahdata" style="background:#1867c0;">Save</v-btn>
+    </v-card-actions>
+    </v-container>
+    </v-card>
+    </v-dialog>
+
+    <v-dialog v-model="dialogdetail"   max-width="700" persistent transition="dialog-bottom-transition">
+    <v-card class="kartu " light style="padding:0px;color:black;border: #fb8c00 solid 3px;">
+      <div style="background:#fb8c00;padding:0px 30px;color:white;">
+<h1>Detail</h1>
+</div>
+    <v-container style="padding:30px;">
+    <!-- <v-row>
+      <v-col>
+      </v-col>
+      <v-col>
+      </v-col>
+    </v-row> -->
+    <div style="margin:20px;">
+      <v-row>
+        <v-col cols="5">
+          <h3>Name: {{ detaildatadialog.name }}</h3>
+        </v-col>
+        <v-col>
+        <h3>Email: {{ detaildatadialog.email }}</h3>
+      </v-col>
+    </v-row>
+    <v-row>
+      <v-col cols="5">
+
+        <h3>Phone: {{ detaildatadialog.phone }}</h3>
+      </v-col>
+      <v-col>
+        <h3>Username: {{ detaildatadialog.username }}</h3>
+      </v-col>
+    </v-row>
+    <v-row>
+      <v-col>
+        <h3>Website: {{ detaildatadialog.website }}</h3>
+      </v-col>
+    </v-row>
+    <!-- <div></div> -->
+  </div>
+    <v-card-actions >
+    <v-btn @click="closedetail()" style="background:#fb8c00;color:black;">Close</v-btn>
+  </v-card-actions>
+</v-container>
+    </v-card>
+  </v-dialog>
+    <v-dialog v-model="dialogedit"   max-width="700" persistent transition="dialog-bottom-transition">
+    <v-card class="kartu " light style="padding:0px;color:black;border:solid 3px #4caf50;">
+      <div style="background:#4caf50;padding:0px 30px;color:white;">
+<h1>Ubah data</h1>
+</div>
+    <v-container style="padding:30px;">
+
+    <v-text-field type="text" v-model="detaildatadialog.name"  label="Name" outline></v-text-field>
+    <v-text-field type="text" v-model="detaildatadialog.email" label="Email" outline></v-text-field>
+    <v-text-field type="text" v-model="detaildatadialog.phone"  label="Phone" outline></v-text-field>
+    <v-text-field type="text" v-model="detaildatadialog.username"  label="Username" outline></v-text-field>
+    <v-text-field type="text" v-model="detaildatadialog.website"  label="Website" outline></v-text-field>
+    <!-- <div></div> -->
+    <v-card-actions >
+    <v-btn @click="closeedit()" style="margin-right:20px;background:white;color:black;">Close</v-btn>
+    <v-btn @click="update()" style="background: #4caf50;color:white;" >Ubah</v-btn>
+  </v-card-actions>
+</v-container>
+    </v-card>
+  </v-dialog>
+  <v-data-table data-app
+  :headers="headers"
+  :items="datauser"
+
        >
-       <!-- {{ datauser.email }} -->
-
+       <!-- <template v-slot:top> -->
+       <!-- </template> -->
        <template v-slot:[`item.aksi`]="{ item }">
-
-
-          <v-btn class="mx-2" fab small  @click="edititem(item)">
+          <v-btn class="mx-2" fab small  @click="klikdetail(item)" style="margin:15px 15px 15px 0px;">
                         <v-icon dark>mdi-eye</v-icon>
                     </v-btn>
-
-      </template>
-
-
-
-      </v-data-table>
-
-      <v-dialog v-model="dialogg" persistent>
-
-      <v-card class="kartu ">
-
-        <v-container>
-
-          <h3>Edit</h3>
-          <v-text-field type="text" :value="datadialog.name"  label="Name" outline></v-text-field>
-<v-text-field type="text" :value="datadialog.email" label="Email" outline></v-text-field>
-<v-text-field type="text" :value="datadialog.phone"  label="Phone" outline></v-text-field>
-<v-text-field type="text" :value="datadialog.username"  label="Username" outline></v-text-field>
-<v-text-field type="text" :value="datadialog.website"  label="Wensite" outline></v-text-field>
-<v-card-actions >
-  <v-btn @click="dialogg= false">Close</v-btn>
-</v-card-actions>
-</v-container>
-      </v-card>
-      </v-dialog>
+          <v-btn class="mx-2" fab small  @click="ubahdata(item)" style="margin:15px 15px 15px 0px;">
+                        <v-icon dark>mdi-pencil</v-icon>
+                    </v-btn>
+          <v-btn class="mx-2" fab small  @click="hapusdata(item)" style="background:#FF2A30;">
+                        <v-icon dark>mdi-delete</v-icon>
+                    </v-btn>
+                  </template>
+                </v-data-table>
+              </v-container>
 
   </div>
 </template>
 <style>
+html{
+  /* background: #b7d5d4; */
+}
 .colnama{
   padding: 20px 20px;
 }
@@ -57,48 +132,125 @@
 
 <script>
 import axios from 'axios';
-import Dialog from '~/components/dialog.vue'
 export default {
  name: 'IndexPage',
- components:{
- Dialog
- },
  data(){
    return{
      datauser: [],
-     dialogg: false,
-     datadialog: [],
+     dialogku: false,
+     dialogdetail: false,
+     dialogedit: false,
+     indexnya: -1,
+     headers: [
+       {text: 'Nama', align: 'start', value: 'name'},
+      //  {text: 'Email', align: 'start', value: 'email'},
+      //  {text: 'Phone', align: 'start', value: 'phone'},
+      //  {text: 'Username', align: 'start', value: 'username'},
+      //  {text: 'Website', align: 'start', value: 'website'},
+       {text: 'Aksi', align:'start', value: 'aksi', width:'300px'},
+     ],
+     dialoghapus:false,
 
-       headers: [
-         {
-           text: 'Nama',value: 'name',
-         },
-         {
-           text: 'Nomer Telp',value: 'phone',
-         },
-         {
-           text: 'Aksi',align:'end',value: 'aksi',
-         },
-       ]
-
+    //  detaildatadialog: [],
+     detaildatadialog:{
+      name:'',
+      email:'',
+      phone:'',
+      username:'',
+      website:''
+     },
+     defaultItem:{
+      name:'',
+      email:'',
+      phone:'',
+      username:'',
+      website:''
+     },
    }
  },
 
  methods:{
 
-   edititem(item){
-    //  this.datadialog= this.datauser.indexOf(item)
-     this.datadialog = Object.assign({}, item)
-     this.dialogg= true
-    //  console.log(datauser)
-   }
-   ,
-
    ambildata(){
      axios.get('https://jsonplaceholder.typicode.com/users').then(respon =>{
        this.datauser= respon.data
      })
+   },
+   klikdetail(item){
+    //  this.detaildatadialog= this.datauser.indexOf(item)
+
+     this.detaildatadialog = Object.assign({}, item)
+     this.dialogdetail= true
+    //  console.log(datauser)
+   },
+   ubahdata(item){
+    //  this.detaildatadialog= this.datauser.indexOf(item)
+
+
+    this.indexnya = this.datauser.indexOf(item)
+    this.detaildatadialog = Object.assign({}, item)
+
+     this.dialogedit= true
+    //  console.log(datauser)
    }
+   ,
+   update(){
+    axios.put('https://jsonplaceholder.typicode.com/users/1',this.detaildatadialog).then(respon =>{
+      //  this.datauser.items= item
+       console.log(respon)
+        alert('berhasil update')
+        })
+    Object.assign(this.datauser[this.indexnya], this.detaildatadialog)
+
+     this.dialogedit= false
+   },
+   hapusdata(item){
+     const d= this.datauser.indexOf(item)
+    axios.delete('https://jsonplaceholder.typicode.com/users/1', {
+      params:item.id
+    }).then(respon =>{
+      //  this.datauser.items= item
+       console.log(respon)
+        alert('berhasil hapus')
+        })
+        this.datauser.splice(d, 1)
+
+  },
+
+  tambahdata(){
+    axios.post('https://jsonplaceholder.typicode.com/users/',
+      this.detaildatadialog
+    ).then(respon =>{
+      console.log(respon)
+      alert('berhasil tambah')
+    })
+    this.datauser.push(this.detaildatadialog)
+
+
+
+    this.close()
+  },
+  close(){
+    this.$nextTick(() => {
+          this.detaildatadialog = Object.assign({}, this.defaultItem)
+        })
+    this.dialogku=false
+
+  },
+  closedetail(){
+    this.$nextTick(() => {
+          this.detaildatadialog = Object.assign({}, this.defaultItem)
+        })
+    this.dialogdetail=false
+
+  },
+  closeedit(){
+    this.$nextTick(() => {
+          this.detaildatadialog = Object.assign({}, this.defaultItem)
+        })
+    this.dialogedit=false
+
+  }
  },
  created(){
  this.ambildata()

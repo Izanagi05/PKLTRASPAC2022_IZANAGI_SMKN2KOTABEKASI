@@ -103,29 +103,46 @@ if(isset($_POST['proses'])){
             print_r  ($arraycountval); 
             echo"<br>";
             echo"<br>";
+            print_r($pisahberita);
+            echo"<br>";
+            // $kkk= explode(" ", $pisahberita);
+
+
+            // foreach()
+            $countkkk=[];
+            $aoao=[];
             for($k=0; $k<count($pisahberita); $k++){
                 
-                
-                
-                // print_r ($jjjj);
-                // for($y=0; $y<count($kkk); $y++){
-                    
-                    // print_r  ($lll);
                 $jjjj = $pisahberita[$k];
-                }
-                
                 $kkk= explode(" ", $jjjj);
-                $arctval= array_count_values($kkk) ;
-                print_r($kkk[1]);
-                $countkkk= count($kkk);
+                echo"<br>";
+               
+                echo"<br>";
+                echo"<br>";
+                echo"<br>";
+                $toi=count($kkk);
+                
+                
+                for($r=0; $r<count($kkk); $r++){
+                    $countkkk[0]=$kkk[$r];
+                    // print_r($kkk[$r]);
+                    // $jj[$r]=count($countkkk);
+
+                    $io= count($countkkk);
+                    $lll = $io/  $toi;
+                    // print_r($lll);
+                    echo"<br>";
+                }
+                // print_r(count($arctval));
                 // for($o=0; $o<count($arctval); $o++){
                     
                     // print_r(count($arctval));
-                // }
-                // }
-                $lll = $countkkk/  count($arctval);
-                
-                print_r($lll);
+                    // }
+                    // }
+                }
+                echo"<br>";
+                $arctval= array_count_values($kkk) ;
+                print_r($arctval['saya']);
      
             
         

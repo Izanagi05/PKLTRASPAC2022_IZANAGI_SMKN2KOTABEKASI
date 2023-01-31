@@ -123,7 +123,8 @@ export default {
 
     editproduk(item){
       this.editedIndex = this.ambil2.indexOf(item)
-      // this.$store.commit('storeku/editproduk')
+      // this.editedIndex = this.$store.commit('storeku/editproduk', item)
+
       this.datadialog  = Object.assign({}, item)
            console.log('halo')
       this.dialogku=true
@@ -131,21 +132,27 @@ export default {
     hapusproduk(item){
       // this.ambil2.splice(this.editedIndex, 1)
       this.editedIndex = this.ambil2.indexOf(item)
-      this.$store.commit('storeku/hapusproduk')
+      this.$store.dispatch('storeku/deleteproduk', item)
         this.close  ()
       console.log("berhasil hapus")
     },
     close(){
+      this.$nextTick(() => {
+          this.datadialog = Object.assign({}, this.defaultItem)
+          this.editedIndex = -1
+        })
       this.dialogku = false
     },
     save(){
       if (this.editedIndex > -1) {
-          Object.assign(this.ambil2[this.editedIndex], this.datadialog)
-          console.log(" EIFS")
+        // this.$store.commit('storeku/editproduk')
+        console.log(" EIFS")
+        // Object.assign(this.ambil2[this.editedIndex], this.datadialog)
+        this.$store.dispatch('storeku/editproduk', this.datadialog)
         } else {
           // this.ambil2.push(this.datadialog)
           // this.$store.dispatch("storeku/addproduk")
-          this.$store.commit('storeku/tambahproduk', this.datadialog)
+          this.$store.dispatch('storeku/addproduk', this.datadialog)
 
           console.log(" ELS")
         }

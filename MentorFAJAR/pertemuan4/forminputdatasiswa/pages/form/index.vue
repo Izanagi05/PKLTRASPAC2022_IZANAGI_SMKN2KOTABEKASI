@@ -4,6 +4,7 @@
 
   <div style="padding:0 200px;">
 
+    <form action="">
 <div class="form container text-center">
   <h1>Form Input Data</h1>
   <div class="row justify-content-center">
@@ -29,21 +30,24 @@
 
   <div class="col-3">
 
-    <div class="row kolominput px-5">
+  <div class="row kolominput px-5">
 
-      <input type="text" class="text"  placeholder="masukan Alamat" v-model="outputalamat">
-    </div>
-    <div class="row kolominput px-5">
-      <input type="text" class="text"  placeholder="masukan No Telp" v-model="outputtelp">
-    </div>
-
+    <input type="text" class="text"  placeholder="masukan Alamat" v-model="outputalamat">
   </div>
+  <div class="row kolominput px-5">
+    <input type="text" class="text"  placeholder="masukan No Telp" v-model="outputtelp">
+  </div>
+
+</div>
 
 <!-- <h1 v-for="(item, index) in inputannis">{{ index+1 }} {{ item }}</h1> -->
 </div>
 <input type="submit" class="reset btn btn-danger mx-3"  v-on:click="reset" value="Reset">
-<input type="submit" class="submit btn btn-primary"  v-on:click="submit" value="Submit">
+<!-- <input type="submit" class="submit btn btn-primary"  v-on:click="submit" value="Submit"> -->
+<button class="submit btn btn-primary"  v-on:click.prevent="submit"></button>
 </div>
+</form>
+<!--  -->
 
     <div v-if="set === true" class="container d-flex justify-content-center">
       <div class="container output">
