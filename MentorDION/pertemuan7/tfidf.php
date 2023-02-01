@@ -109,7 +109,7 @@ if(isset($_POST['proses'])){
 
 
             // foreach()
-            $countkkk=[];
+            $countkkk=count($pisahberita);
             $aoao=[];
             for($k=0; $k<count($pisahberita); $k++){
                 
@@ -118,31 +118,57 @@ if(isset($_POST['proses'])){
                 echo"<br>";
                
                 echo"<br>";
-                echo"<br>";
-                echo"<br>";
+                // echo"<br>";
+                // echo"<br>";
+                $arctval= array_count_values($kkk) ;
                 $toi=count($kkk);
+                // print_r($kkk);
                 
                 
-                for($r=0; $r<count($kkk); $r++){
-                    $countkkk[0]=$kkk[$r];
-                    // print_r($kkk[$r]);
+                // for($r=0; $r<count($kkk); $r++){
+                //     $countkkk[0]=$kkk[$r];
+                //     // print_r($kkk[$r]);
                     // $jj[$r]=count($countkkk);
 
-                    $io= count($countkkk);
-                    $lll = $io/  $toi;
+                    // echo "<br>";
+                    $io= array_values($arctval);
+                    for ($m=0; $m<count($io); $m++){
+                        
+                        $lll = $io[$m] /  $toi;
+                        // echo"<br>";
+                        // print_r($ll  l);
+                    }
                     // print_r($lll);
-                    echo"<br>";
-                }
+
+                //     // echo"<br>";
+                // }
                 // print_r(count($arctval));
                 // for($o=0; $o<count($arctval); $o++){
                     
                     // print_r(count($arctval));
                     // }
                     // }
+                    // print_r($kkk);
+                    $arval=array_values($arraycountval);
+                    echo"<br>";  
+                    //     for($u=0; $u<count($arval); $u++){
+                        
+                //         $arg = $countkkk / $arval[$u];
+                //         // echo"<br>";
+                //         $lognya = log10($arg);
+                //         print_r($lognya);
+                //         echo"<br>";  
+
+                //     }
                 }
-                echo"<br>";
-                $arctval= array_count_values($kkk) ;
-                print_r($arctval['saya']);
+                // for($w=0; $w<count($semuakata); $w++){
+                    // $tfxidf= $lll * $lognya[$w];
+                        print_r($arval);
+                // }
+                // echo substr_count($kkk);
+
+                // echo"<br>";
+            
      
             
         

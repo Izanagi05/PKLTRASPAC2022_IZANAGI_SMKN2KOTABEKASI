@@ -125,7 +125,7 @@ class Baru extends Produk{
 // }
 
 
-$objek1 = new Komik("Naruto", "Masashi Kishimoto", "Shonen Jump", 30000 , 100);
+$objek1 = new Komik("1", "2 3", "4 Jump", 30000 , 100);
 $objek2 = new Game("Uncharted", "Neil DruckMann", "Sony Computer", 250000 , 50);
 $infoproduk1 = new CetakInfoProduk();
 
