@@ -101,7 +101,7 @@ class Hitung extends Calon{
 // }
 // }
 $hasil = new Hitung("", "");
-echo $hasil->setnamamu("aku");
+echo $hasil->setnamamu("iza");
 echo $hasil->setnamapasangan("kamuu");
 echo $hasil->gethasilcalon();
 echo"<br>";
