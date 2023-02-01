@@ -48,10 +48,10 @@ class Hitung extends Calon{
             // while(strlen($this->kombinasi) >= $this->i){
             //     $this->i++;
             // }
-            $this->tes= strlen( $this->namamu) + strlen($this->kombinasi) %100 ;
+            $this->tes= strlen( $this->namamu) / strlen($this->kombinasi) *100 ;
             $this->cinta = round($this->tes);
         }elseif($this->znmmu <= $this->znmpsngn){
-            $this->tes= strlen( $this->namapasangan) + strlen($this->kombinasi) %100;
+            $this->tes= strlen( $this->namapasangan) / strlen($this->kombinasi) *100;
             $this->cinta = round($this->tes,1);
                 // $this->cinta = 10;
             }else{
