@@ -78,9 +78,6 @@ echo "<pre>". print_r($pisahberita). "</pre>";
 // echo count($pisahberita);
 // $strreplace = str_replace("","", $pisahberita);
 // $tes = str_replace(")", "", $pisahberita);
-
-
-
 if(isset($_POST['proses'])){
 
     if( $iberita){
@@ -97,103 +94,114 @@ if(isset($_POST['proses'])){
             <th>Poin Kata Kunci</th>
             </tr>
             ";
-
             $semuakata = explode(" ", $strreplace);
             $arraycountval= array_count_values($semuakata);
-            print_r  ($arraycountval); 
+            // $arraycountval= array_count_values(array_unique($semuakata));
+            // print_r  ($arraycountval); 
             echo"<br>";
             echo"<br>";
-            print_r($pisahberita);
+            // print_r($pisahberita);
             echo"<br>";
             // $kkk= explode(" ", $pisahberita);
-
-
             // foreach()
             $countkkk=count($pisahberita);
             $aoao=[];
+            $katakunci = "katakunci";
+            $pointkata = "tes";
             for($k=0; $k<count($pisahberita); $k++){
                 
-                $jjjj = $pisahberita[$k];
-                $kkk= explode(" ", $jjjj);
-                echo"<br>";
-               
-                echo"<br>";
-                // echo"<br>";
-                // echo"<br>";
-                $arctval= array_count_values($kkk) ;
-                $toi=count($kkk);
-                // print_r($kkk);
-                
-                
-                // for($r=0; $r<count($kkk); $r++){
-                //     $countkkk[0]=$kkk[$r];
-                //     // print_r($kkk[$r]);
-                    // $jj[$r]=count($countkkk);
+                // foreach ($pisahberita as $pb){
+                    $jjjj = $pisahberita[$k];
+                    $kkk= explode(" ", $jjjj);
+                    // $arraycountva= array_count_values($kkk);
+                    echo"<tr>";
+                echo "<td>";
+                echo $i++;
+                echo "</td>";
+                echo"<td>";
+                echo $jjjj."<br>";
+                echo"</td>";
+                echo "<td>";
+               echo  $katakunci;
+               echo "</td>";
+               echo "<td>";
 
-                    // echo "<br>";
+
+
+                $arctval= array_count_values($kkk) ;
+                $jmlkt=count($kkk);
+
                     $io= array_values($arctval);
+                    // print_r($kkk);
                     for ($m=0; $m<count($io); $m++){
                         
-                        $lll = $io[$m] /  $toi;
+                        $lll = $io[$m] /  $jmlkt;
                         // echo"<br>";
-                        // print_r($ll  l);
                     }
-                    // print_r($lll);
-
-                //     // echo"<br>";
-                // }
-                // print_r(count($arctval));
-                // for($o=0; $o<count($arctval); $o++){
-                    
-                    // print_r(count($arctval));
-                    // }
-                    // }
-                    // print_r($kkk);
                     $arval=array_values($arraycountval);
-                    echo"<br>";  
-                    //     for($u=0; $u<count($arval); $u++){
-                        
-                //         $arg = $countkkk / $arval[$u];
-                //         // echo"<br>";
-                //         $lognya = log10($arg);
-                //         print_r($lognya);
-                //         echo"<br>";  
-
-                //     }
+                    // echo"<br>";  
+                    //idf
+                    // print_r($arval[$k]);
+                    $arg = $countkkk / $arval[$k];
+                    $kuncilognya= log10($arg);
+                    $poinkt=$lll * $kuncilognya;
+                    echo $poinkt;
                 }
+    
+                echo "</td>";
+                echo"</tr>";
+                //    echo  $kuncilognya;
+            // }
+            echo "</table>";
+                // print_r(count($arctval));
+                
+                // print_r(count($arctval));
+                // }
+                // }
+                // print_r($kkk);
+                // for($v=0; $v<count($pisahberita); $v++){
+
+                    // print_r($yoooo[]);
+                    // }
+            // for($u=0; $u<count($arval); $u++){
+                
+            //     $arg = $countkkk / $arval[$u];
+            //     //         // echo"<br>";
+            //     echo "<br>";  
+            // }
+                
+            //     $katakunci = "katakunci";
+            //     $pointkata = "tes";
+            //     foreach ($pisahberita as $pb){
+            //         echo"<tr>";
+            //     echo "<td>";
+            //     echo $i++;
+            //     echo "</td>";
+            //     echo"<td>";
+            //     echo $pb."<br>";
+            //     echo"</td>";
+            //     echo "<td>";
+            //    echo  $katakunci;
+               
+            //    echo "</td>";
+            //    echo "<td>";
+            //    echo  $kuncilognya;
+            //     echo "</td>";
+            //     echo"</tr>";
+            // }
+            //     echo "</table>";
+    
+               
+                    // print_r($arraycountval);
+                    // $expval= explode(" ", $impval);
+                    // print_r($expval);
                 // for($w=0; $w<count($semuakata); $w++){
                     // $tfxidf= $lll * $lognya[$w];
-                        print_r($arval);
+                        // print_r($arval);
                 // }
                 // echo substr_count($kkk);
-
+                // print_r($yoooo);
                 // echo"<br>";
-            
-     
-            
-        
-        $katakunci = "katakunci";
-        $pointkata = "tes";
-        foreach ($pisahberita as $pb){
-            echo"<tr>";
-        echo "<td>";
-        echo $i++;
-        echo "</td>";
-        echo"<td>";
-        echo $pb."<br>";
-        echo"</td>";
-        echo "<td>";
-       echo  $katakunci;
-       
-       echo "</td>";
-       echo "<td>";
-       echo  $pointkata;
-        echo "</td>";
-        echo"</tr>";
-    }
-        echo "</table>";
-
-
 
         // echo strtolower($iberita);
     }else{

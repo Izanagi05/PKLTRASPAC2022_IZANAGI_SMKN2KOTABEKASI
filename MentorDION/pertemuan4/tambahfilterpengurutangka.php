@@ -43,7 +43,7 @@
 </div>
           
     
-    <form action="insertinnerjs.php" method="post">
+    <form action="tambahfilterpengurutangka.php" method="post">
 
             <table>
                 
