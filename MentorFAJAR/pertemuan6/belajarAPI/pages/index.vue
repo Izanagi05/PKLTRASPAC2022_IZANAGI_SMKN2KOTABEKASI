@@ -13,7 +13,6 @@
            v-bind="attrs"
            v-on="on"
            style="margin:10px;background-color: #1867c0; "
-
          >Tambah data</v-btn>
        </template>
     <v-card class="kartu  " light style="padding:0px;color:black;border:solid 3px #1867c0;" >

@@ -4,11 +4,9 @@ export const state = () => ({
   // editedIndex: -1
 
 })
-// export const getters = {
-//   getproduk(state){
-//     state.dataproduk
-//   }
-// }
+export const getters = {
+  searchResult: (state) => state.dataproduk,
+}
 
 export const mutations= {
   SET_PRODUK(state, dataproduk) {
@@ -19,8 +17,11 @@ export const mutations= {
     console.log("tmbh")
   },
   UPDATE_PRODUK(state, dataproduk){
-    state.dataproduk.splice(state.dataproduk.indexOf(dataproduk), 1)
-    state.dataproduk.push(dataproduk)
+
+    state.dataproduk.items = dataproduk
+    // state.dataproduk.splice(state.dataproduk.indexOf(dataproduk), 1)
+    // state.dataproduk.push(dataproduk)
+
     // Object.assign(state.dataproduk, dataproduk)
     // state.dataproduk.items=dataproduk
     // state.dataproduk.indexOf(dataproduk)
@@ -37,6 +38,12 @@ export const mutations= {
     // let index = state.dataproduk.findIndex((c) => c.id == product);
     // state.dataproduk.splice(index, 1)
   state.dataproduk.splice(state.dataproduk.indexOf(i), 1)
+  },
+  SEARCH_PRODUK(state, dataproduk){
+    // let index = state.dataproduk.findIndex((c) => c.id == product);
+    // state.dataproduk.splice(index, 1)
+  // state.dataproduk.splice(state.dataproduk.indexOf(i), 1)
+  state.dataproduk= dataproduk
   }
 }
 
@@ -64,6 +71,7 @@ export const actions ={
 
       }).then(result => {
        commit("TAMBAH_PRODUK", dataproduk)
+     //  this.ambildata()
      })
    }catch (error){
      alert (error);
@@ -76,6 +84,7 @@ export const actions ={
         params: dataproduk
       }).then(result => {
        commit("HAPUS_PRODUK", dataproduk)
+     //  this.ambildata()
      })
    }catch (error){
      alert (error);
@@ -89,6 +98,19 @@ export const actions ={
         params: dataproduk
       }).then(result => {
        commit("UPDATE_PRODUK", dataproduk )
+     //  this.ambildata()
+     })
+   }catch (error){
+     alert (error);
+     console.log(error);
+   }
+    // commit('hapusproduk')
+  },
+  async searchproduk({commit}, query){
+    try{
+      await axios.get(`https://dummyjson.com/products/search?q=${query}`).then(result => {
+       commit("SEARCH_PRODUK", result.data.products )
+     //  this.ambildata()
      })
    }catch (error){
      alert (error);
