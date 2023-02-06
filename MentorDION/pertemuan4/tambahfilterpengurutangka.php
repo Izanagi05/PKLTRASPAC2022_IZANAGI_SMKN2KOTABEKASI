@@ -72,6 +72,8 @@
                         <select name="pilihfilter[]" id="selectid" >
                             <option  value="lebihbesardari">></option>
                             <option   value="lebihkecildari"><</option>
+                            <option  value="lebihbesardarisamadengan">>=</option>
+                            <option   value="lebihkecildarisamadengan"><=</option>
                         </select>
                         <input type="number" name="angkafilter[]">
                     </div>
@@ -142,6 +144,8 @@
                         <select name="pilihfilter[]" id="selectid" >
                             <option  value="lebihbesardari">></option>
                             <option   value="lebihkecildari"><</option>
+                            <option  value="lebihbesardarisamadengan">>=</option>
+                            <option   value="lebihkecildarisamadengan"><=</option>
                         </select>
                         <input type="number" name="angkafilter[]">
                     </div>`;
@@ -199,16 +203,25 @@ if (isset($_POST['urutkan'])){
             $pilihfilter1 = $pilihfilter[$i] ;
             $angkafilter1 = $angkafilter[$i];
 
-            $fungsinya =  function ($kkk){
+            $hasilinput =array_filter($hasilinput, function ($item){
                 global $pilihfilter1, $angkafilter1;
-                
-                if($pilihfilter1 === 'lebihbesardari'){
-                    return $kkk > $angkafilter1;
-                }elseif($pilihfilter1 === 'lebihkecildari'){
-                    return $kkk < $angkafilter1;
+                switch ($pilihfilter1) {
+                    case 'lebihbesardari':
+                        return $item > $angkafilter1;
+                        break;
+                    case 'lebihbesardarisamadengan':
+                        return $item >= $angkafilter1;
+                        break;
+                    case 'lebihkecildari':
+                        return $item < $angkafilter1;
+                        break;
+                    case 'lebihkecildarisamadengan':
+                        return $item <= $angkafilter1;
+                        break;
                 }
-            };
-            $arayfilter = array_filter($hasilinput, $fungsinya);
+            
+            });
+            // $arayfilter = array_filter($hasilinput, $fungsinya);
 
         }
     }
@@ -221,24 +234,24 @@ if (isset($_POST['urutkan'])){
         }
         return $awalidengan.$l;
     };
-    $map = array_map($awali, $arayfilter);
+    $map = array_map($awali, $hasilinput);
 
     
 }
 
 if($cekgabung){
 
-    $gabungkan = implode($pemisah, $map);
-        
+    $hasilinput = implode($pemisah, $map);
+    
 }
 
 
 
 
-   
-    
-    
-      }
+
+
+
+echo '<pre> '.print_r($hasilinput ?? "").'</pre> ';
+}
 // print_r ($gabungkan ?? '');     
-echo $gabungkan ?? '';
 ?>  
