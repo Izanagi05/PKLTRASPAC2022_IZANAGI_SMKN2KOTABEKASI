@@ -1,10 +1,12 @@
 import colors from 'vuetify/es5/util/colors'
+// import { defineNuxtConfig } from 'nuxt'
+import { defineNuxtConfig } from '@nuxt/bridge'
 
-export default {
+export default defineNuxtConfig({
   // Global page headers: https://go.nuxtjs.dev/config-head
   head: {
-    titleTemplate: '%s - middleware-cookienuxtjs',
-    title: 'middleware-cookienuxtjs',
+    titleTemplate: '%s - darkmode',
+    title: 'darkmode',
     htmlAttrs: {
       lang: 'en'
     },
@@ -34,16 +36,14 @@ export default {
   buildModules: [
     // https://go.nuxtjs.dev/vuetify
     '@nuxtjs/vuetify',
-    // '@nuxtjs/color-mode'
+    '@nuxtjs/color-mode'
   ],
 
   // Modules: https://go.nuxtjs.dev/config-modules
-  ssr: true,
   modules: [
     // https://go.nuxtjs.dev/axios
-    'cookie-universal-nuxt',
-    // '@nuxtjs/color-mode',
     '@nuxtjs/axios',
+    // '@nuxtjs/color-mode'
   ],
 
   // Axios module configuration: https://go.nuxtjs.dev/config-axios
@@ -74,4 +74,5 @@ export default {
   // Build Configuration: https://go.nuxtjs.dev/config-build
   build: {
   }
-}
+})
+

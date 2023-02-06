@@ -1,8 +1,10 @@
 <template>
   <div style="background-color:#D9D9D9;">
+    <v-toolbar>
+      <v-btn  @click="logout()">logout</v-btn>
+    </v-toolbar>
     <div  class="konten">
-      <NuxtLink to="/dashboard/about">private page</NuxtLink>
-      <a href="/dashboard/about">tes</a>
+      <!-- <NuxtLink to="/dashboard/about"> </NuxtLink> -->
       <div class="dadjokes" >
         <h2> Dad Jokes</h2>
 
@@ -134,6 +136,12 @@ export default {
       })
       })
         },
+      logout(){
+        // this.$cookies.remove('cookieku')
+        this.$store.dispatch("userr/logout")
+
+    // this.$router.push('/login')
+      }
 
 
 

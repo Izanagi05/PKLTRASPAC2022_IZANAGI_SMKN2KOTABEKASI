@@ -3,27 +3,32 @@
     <div>
 
 
+      <v-app style="background: gray;">
       <v-container>
-      <div class="text-h1">
-        <h1>
 
+          <!-- <div class="text-h3 mx-5">
           Ini halaman login
-        </h1>
-        </div>
-        <v-row justify="center">
-          <v-col cols="5" >
-          <v-card class="vkartu" style="background: yellowgreen;">
+        </div> -->
+        <v-row align="center"
+      justify="center" >
+          <v-col cols="5" class="pt-10" >
+          <v-card light class="vkartu" style="background: white ;">
+            <div style="padding:20px;">
+
+              <h2>Login</h2>
+            </div>
             <div class="kartu">
               <v-text-field v-model="username" label="username" ></v-text-field>
-              <v-text-field v-model="password" label="password"  ></v-text-field>
+              <v-text-field v-model="password" type="password" label="password"  ></v-text-field>
             </div>
             <div>
-              <v-btn class="tombol" @click.prevent="login()" color="primary">Login</v-btn>
+              <v-btn class="tombol" @click.prevent="login()" style="background: #1976D2; color:white;">Login</v-btn>
             </div>
           </v-card>
         </v-col>
       </v-row>
     </v-container>
+  </v-app>
 
 
   </div>
@@ -52,7 +57,7 @@ input{
 <script>
 import axios from 'axios'
 export default{
-
+  middleware: 'middlewareku',
   data(){
     return{
       username:null,
@@ -70,15 +75,20 @@ export default{
             password : this.password
           });
           console.log(response)
-          this.$store.dispatch("userr/kkk")
-          this.$router.push('/dashboard/')
+          // this.$router.push('/dashboard/')
+          this.$store.dispatch("userr/login", this.username)
+          // this.$router.push('/dashboard/')
+          // this.$cookies.set('cookieku', 'true')
 
         }else{
           alert('Isi Username dan password dengan benar')
         }
     }
 
-  }
+  },
+  // mounted() {
+  //   this.$store.dispatch("userr/kkk")
+  // }
 
 }
 </script>
