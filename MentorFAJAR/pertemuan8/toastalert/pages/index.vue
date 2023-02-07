@@ -2,10 +2,10 @@
   <div id="app">
 
     <!-- <v-app> -->
-    <div class="grey--text">
+    <!-- <div class="grey--text">
 
-        <h1 class=" ">tes</h1>
-      </div>
+      <v-btn class="warning" @click="klik">klik</v-btn>
+      </div> -->
       <!-- </v-app> -->
       <v-container>
 
@@ -19,7 +19,7 @@
            v-bind="attrs"
            v-on="on"
            style="margin:10px;background-color: #1867c0; "
-         >Tambah data</v-btn>
+         ><v-icon>mdi-plus</v-icon>Tambah data</v-btn>
        </template>
     <v-card class="kartu  " light style="padding:0px;color:black;border:solid 3px #1867c0;" >
       <div style="background:#1867c0;padding:10px 30px;color:white;">
@@ -139,6 +139,22 @@ html{
 .colnama{
   padding: 20px 20px;
 }
+.toastku-hapus{
+  background-color: #A5D6A7 !important;
+  color: #0f5132 !important;
+}
+.toastku-ubah{
+  background-color: #A5D6A7 !important;
+  color: #0f5132 !important;
+}
+.toastku-tambah{
+  background-color: #A5D6A7 !important;
+  color: #0f5132 !important;
+}
+.toastku-error{
+  background-color: #f8d7da !important;
+  color: #842029 !important;
+}
 </style>
 
 <script>
@@ -207,36 +223,96 @@ export default {
    }
    ,
    update(){
-    axios.put('https://jsonplaceholder.typicode.com/users/1',this.detaildatadialog).then(respon =>{
-      //  this.datauser.items= item
+
+    try {
+
+      axios.put('https://jsonplaceholder.typicode.com/users/1',this.detaildatadialog).then(respon =>{
+        //  this.datauser.items= item
        console.log(respon)
-        alert('berhasil update')
+        // alert('berhasil update')
+        this.$toast.show('Berhasil mengubah data', {
+          // fullWidth:true,
+        // icon:'check',
+        action : {
+        text : 'ok',
+        onClick : (e, toastObject) => {
+            toastObject.goAway(0);
+        }
+    },
+        iconPack:'mdi',
+        icon : 'mdi-update',
+        className:['toastku-ubah'],
+        position:'top-center',
+        duration: 5000,
+    })
         })
     Object.assign(this.datauser[this.indexnya], this.detaildatadialog)
+  }catch (error){
+    console.log(error);
+  }
 
     this.dialogedit= false
    },
    hapusdata(item){
      const d= this.datauser.indexOf(item)
-     axios.delete('https://jsonplaceholder.typicode.com/users/1', {
-      params:item.id
-    }).then(respon =>{
-      //  this.datauser.items= item
-       console.log(respon)
-        alert('berhasil hapus')
-        })
+     try {
+
+       axios.delete('https://jsonplaceholder.typicode.com/users/1', {
+        params:item.id
+      }).then(respon =>{
+        //  this.datauser.items= item
+          console.log(respon)
+          this.$toast.show('Berhasil hapus data', {
+            iconPack:'mdi',
+            icon : 'mdi-delete',
+          action : {
+          text : 'ok',
+          onClick : (e, toastObject) => {
+              toastObject.goAway(0);
+          }
+      },
+          className:['toastku-hapus'],
+          // theme: "bubble",
+          position:'top-center',
+          duration: 5000,
+      })
+
+          })
+     } catch (error){
+      // alert (error);
+      console.log(error);
+    }
         this.datauser.splice(d, 1)
 
   },
 
   tambahdata(){
-    axios.post('https://jsonplaceholder.typicode.com/users/',
+    try {
+
+      axios.post('https://jsonplaceholder.typicode.com/users/',
       this.detaildatadialog
-    ).then(respon =>{
-      console.log(respon)
-      alert('berhasil tambah')
+      ).then(respon =>{
+        console.log(respon)
+      this.$toast.show('Berhasil menambah data', {
+        // fullWidth:true,
+        // icon:'check',
+        iconPack:'mdi',
+        icon : 'mdi-note-plus',
+        action : {
+        text : 'ok',
+        onClick : (e, toastObject) => {
+          toastObject.goAway(0);
+        }
+      },
+        className:['toastku-tambah'],
+        position:'top-center',
+        duration: 5000,
+      })
     })
     this.datauser.push(this.detaildatadialog)
+  } catch (error){
+      console.log(error);
+    }
 
 
 
