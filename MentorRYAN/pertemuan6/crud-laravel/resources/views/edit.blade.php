@@ -11,8 +11,17 @@
     <input type="text"  name="nama" class="form-control" value="{{$editmurid->nama}}"  placeholder="Nama">
   </div>
   <div class="form-group">
+      {{-- {{$kelasf}} --}}
     <label for="kelas">Masukan kelas</label>
-    <input type="text"  name="kelas" class="form-control"  value="{{$editmurid->kelas}}" placeholder="Kelas">
+    <select name="kelas_id">
+
+        {{-- <option value="{{$editmurid->kelass->id}}">{{$editmurid->kelass->namakelas}}</option> --}}
+        {{-- <option value="{{$editmurid->kelass->id}}">{{$kelasf->namakelas}}</option> --}}
+        @foreach($kelass as $k)
+        {{-- <option value="{{$k->id}}">{{$k->namakelas}}</option> --}}
+        <option value="{{$k->id}}" {{old('kelas_id', $editmurid->kelas_id) == $k->id ? 'selected' : null}}>{{$k->namakelas}}</option>
+        @endforeach
+      </select>
   </div>
   <div class="form-group">
     <label for="alamat">Masukan alamat</label>

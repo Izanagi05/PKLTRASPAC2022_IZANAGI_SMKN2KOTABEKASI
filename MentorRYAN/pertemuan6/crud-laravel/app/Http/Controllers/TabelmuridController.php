@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use App\Models\tabelmurid;
+use App\Models\kelas;
 use App\Http\Requests\StoretabelmuridRequest;
 use App\Http\Requests\UpdatetabelmuridRequest;
 
@@ -18,13 +19,16 @@ class TabelmuridController extends Controller
 
         if($request->has('search')){
 
-            $muridss= tabelmurid::where('nama', 'LIKE', '%'.$request->search.'%')->get();
+            $muridss= tabelmurid::where('nama', 'LIKE', '%'.$request->search.'%')->orWhere('kelas_id', 'LIKE', '%'.$request->search.'%')->orWhere('alamat', 'LIKE', '%'.$request->search.'%')->get();
+
         }else{
             // $searchku =tabelmurid::get();
             $muridss = tabelmurid::get();
+            // $kelass = kelas::get();
         }
         return view('crud',[
-            'murids'=>$muridss
+            'murids'=>$muridss,
+            // 'kelass'=>$kelass,
         ]);
     }
 
@@ -35,7 +39,12 @@ class TabelmuridController extends Controller
      */
     public function create()
     {
-        return view('create');
+        $kelass = kelas::get();
+        $muridss = tabelmurid::get();
+        return view('create', [
+            'murids'=>$muridss,
+            'kelas'=>$kelass
+        ]);
     }
 
     /**
@@ -54,7 +63,7 @@ class TabelmuridController extends Controller
         // ]);
         $validasi = $request->validate([
             'nama' => 'required|max:255',
-            'kelas' => 'required|max:255',
+            'kelas_id' => 'required|max:255',
             'alamat' => 'required|max:255',
             'tgllahir' => 'required|max:255',
         ]);
@@ -82,7 +91,11 @@ class TabelmuridController extends Controller
     public function edit(tabelmurid $tabelmurid, $id)
     {
         $editmurids = tabelmurid::find($id);
+        $kelass = kelas::get();
+        $kelasf = kelas::find($editmurids->kelas_id );
         return view('edit', [
+            'kelass'=>$kelass,
+            'kelasf'=>$kelasf,
             'editmurid' => $editmurids
         ]);
     }
@@ -99,7 +112,7 @@ class TabelmuridController extends Controller
 
         $validasi = $request->validate([
             'nama' => 'required|max:255',
-            'kelas' => 'required|max:255',
+            'kelas_id' => 'required|max:255',
             'alamat' => 'required|max:255',
             'tgllahir' => 'required|max:255',
         ]);

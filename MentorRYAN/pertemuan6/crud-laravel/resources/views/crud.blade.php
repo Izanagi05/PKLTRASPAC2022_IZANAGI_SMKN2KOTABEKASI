@@ -19,17 +19,20 @@
         <thead class="thead-dark">
           <tr>
             <th scope="col">Nama</th>
-            <th scope="col">Kelas</th>
+            <th scope="col">Kelas id</th>
+            <th scope="col">namakelass</th>
             <th scope="col">Alamat</th>
             <th scope="col">Tanggal lahir</th>
           </tr>
         </thead>
         <tbody>
+            {{-- {{$kelas}} --}}
             @foreach ($murids as $mrd)
 
             <tr>
                 <td>{{$mrd->nama}}</td>
-                <td>{{$mrd->kelas}}</td>
+                {{-- <td>{{$mrd->kelas_id}}</td> --}}
+                <td>{{$mrd->kelass->id}}</td>
                 <td>{{$mrd->alamat}}</td>
                 <td>{{$mrd->tgllahir}}</td>
                 <td><a href="/crud/{{$mrd->id}}/edit" class="btn btn-warning">Edit</a></td>

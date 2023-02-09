@@ -19,7 +19,12 @@
         </div>
         <div class="form-group">
           <label for="kelas">Masukan kelas</label>
-          <input type="text"  name="kelas" class="form-control"  placeholder="Kelas">
+          <select name="kelas_id">
+
+            @foreach($kelas as $k)
+            <option value="{{$k->id}}">{{$k->namakelas}}</option>
+            @endforeach
+          </select>
         </div>
         <div class="form-group">
           <label for="alamat">Masukan alamat</label>

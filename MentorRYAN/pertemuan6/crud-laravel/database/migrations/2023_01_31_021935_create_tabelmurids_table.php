@@ -15,8 +15,8 @@ return new class extends Migration
     {
         Schema::create('tabelmurids', function (Blueprint $table) {
             $table->id();
+            $table->foreignId('kelas_id');
             $table->string('nama', 255);
-            $table->string('kelas', 255);
             $table->string('alamat', 255);
             $table->date('tgllahir');
             $table->timestamps();

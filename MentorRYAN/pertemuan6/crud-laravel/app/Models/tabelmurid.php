@@ -7,7 +7,13 @@ use Illuminate\Database\Eloquent\Model;
 
 class tabelmurid extends Model
 {
-    use HasFactory;
-    protected $table = 'tabelmurids';
+        use HasFactory;
+        protected $table = 'tabelmurids';
     protected $guarded = ['id'];
+
+
+    public function kelass()
+    {
+        return  $this->belongsTo(kelas::class, 'kelas_id');
+    }
 }
