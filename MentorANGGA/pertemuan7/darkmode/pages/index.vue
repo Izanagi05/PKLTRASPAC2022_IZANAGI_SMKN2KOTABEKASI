@@ -1,9 +1,9 @@
 <template>
   <div>
-    <div >
+    <!-- <div > -->
 
       <div class="text-h3">
-        halo
+        halo {{ $colorMode }}
     </div>
     <h1>Color mode: {{ $colorMode.value }}</h1>
     <select v-model="$colorMode.preference">
@@ -13,19 +13,10 @@
       <option value="sepia">Sepia</option>
     </select>
   </div>
-  </div>
+  <!-- </div> -->
 </template>
 <script>
-  // const colorMode= useColorMode()
-// export default {
-//   colorMode: 'light',
-//   data(){
-//     return{
 
-//     }
-//   }
-//   // console.log(colorMode.preference)
-// }
 </script>
 <style>
 body {

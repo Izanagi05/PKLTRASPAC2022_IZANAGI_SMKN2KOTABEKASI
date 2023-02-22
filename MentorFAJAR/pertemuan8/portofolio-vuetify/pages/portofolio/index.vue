@@ -2,7 +2,7 @@
   <div>
     <div class="page-3" style="padding-bottom:200px;">
       <headerku />
-      <div class="px-10" style="margin-top:100px;">
+      <div class="px-10" style="padding-top:100px;">
         <v-row class="white--text" justify="center">
           <v-col cols="3">
             <div class="text-center">

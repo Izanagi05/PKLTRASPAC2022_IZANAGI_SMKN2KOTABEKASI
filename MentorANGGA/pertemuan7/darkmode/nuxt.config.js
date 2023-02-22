@@ -43,7 +43,6 @@ export default defineNuxtConfig({
   modules: [
     // https://go.nuxtjs.dev/axios
     '@nuxtjs/axios',
-    // '@nuxtjs/color-mode'
   ],
 
   // Axios module configuration: https://go.nuxtjs.dev/config-axios

@@ -4,6 +4,7 @@ use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\ShowDataController;
 use App\Http\Controllers\HalAdminController;
 use App\Http\Controllers\ProjectController;
+use App\Http\Controllers\LoginController;
 use App\Http\Controllers\BeritaController;
 
 /*
@@ -17,10 +18,20 @@ use App\Http\Controllers\BeritaController;
 |
 */
 
-// Route::get('/home', function () {
-//     return view('home');
-// });
-Route::get('/home', [ShowDataController::class,'index']);
-Route::get('/home/haladmin', [HalAdminController::class,'index']);
-Route::resource('/home/haladmin/projek', ProjectController::class);
-Route::resource('/home/haladmin/berita', BeritaController::class);
+Route::get('/', function () {
+    return view('welcome');
+});
+Route::get('/login', [LoginController::class,'index'])->name('login')->middleware('guest');;
+Route::post('/postlogin', [LoginController::class, 'ceklogin']);
+Route::get('/logout', [LoginController::class, 'logout']);
+
+
+Route::middleware(['auth', 'cekklevel:admin'])->group(function () {
+    Route::get('/home/haladmin', [HalAdminController::class,'index']);
+    Route::resource('/home/haladmin/berita', BeritaController::class);
+    Route::resource('/home/haladmin/projek', ProjectController::class);
+});
+
+Route::middleware(['auth', 'cekklevel:admin,user'])->group(function () {
+    Route::get('/home', [ShowDataController::class,'index']);
+});

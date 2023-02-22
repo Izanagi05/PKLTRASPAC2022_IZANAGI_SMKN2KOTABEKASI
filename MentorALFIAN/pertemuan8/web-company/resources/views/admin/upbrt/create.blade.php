@@ -15,7 +15,7 @@
         </div>
         <div class="form-group">
             <label for="judul">Masukan isi berita</label>
-            <input type="text"  name="isi" class="form-control"  placeholder="isi berita">
+            <textarea type="text"  name="isi" class="form-control"  placeholder="isi berita"></textarea>
         </div>
 
         <button type="submit" class="btn btn-primary m-3">Submit</button>

@@ -3,6 +3,7 @@
     <v-app-bar dark
         color="rgba(255, 255, 255, 0)"
         elevation="0"
+        fixed
         >
         <v-row justify="end" class="pa-10">
           <v-col cols="6">

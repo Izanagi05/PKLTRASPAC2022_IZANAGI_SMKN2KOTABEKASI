@@ -29,7 +29,8 @@
   </div>
   </div>
 </template>
-<style>
+<style scoped>
+
 .pageku2{
   background-size: cover;
   background-position: center;
